@@ -25,11 +25,17 @@ async function run() {
     // ============ products collection all code ============= //
     app.post('/product', async (req, res) => {
       const product = req.body;
-      // console.log(product);
       const result = await productsCollection.insertOne(product)
       res.send(result)
-
     })
+
+    app.get('/products',async(req,res)=>{
+      const query = {};
+      const result = await productsCollection.find(query).toArray();
+      res.send(result);
+    })
+
+    
   }
   finally {
 
